@@ -36,6 +36,12 @@ function draw() {
     // 오른쪽 눈동자
     circle(rightPupilX, faceY - 50, pupilRadius * 2);
 
+    // 코
+    fill('#00bb88');
+    triangle(faceX, faceY, faceX - 10, faceY + 20 , faceX + 10, faceY + 20);
+    fill(255, 204, 0);
+    triangle(faceX, faceY + 7, faceX - 5, faceY + 17, faceX + 5, faceY + 17);
+
     // 입 그리기
     fill('red');
     arc(faceX, faceY + 50, 150, 100, 0, PI, CHORD);
