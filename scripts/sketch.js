@@ -4,7 +4,7 @@ function setup() {
 }
 
 function draw() {
-    console.log("draw");
+    console.log(mouseX,  mouseY);
     const faceX = width / 2;
     const faceY = height / 2;
     const faceRadius = 150;
@@ -28,13 +28,34 @@ function draw() {
     // 눈동자 그리기
     fill('black');
     const pupilRadius = 25;
-    const leftPupilX = leftEyeX - (eyeRadius - pupilRadius);
-    const rightPupilX = rightEyeX - (eyeRadius - pupilRadius);
+    let leftPupilX = leftEyeX;
+    let rightPupilX = rightEyeX;
+    let leftPupilY = leftEyeY;
+    let rightPupilY = rightEyeY;
+    let diffX = Math.abs(mouseX - faceX);
+    let diffY = Math.abs(mouseY - leftEyeY);
+    if (diffX > diffY) {
+        if (mouseX < faceX) {
+            leftPupilX = leftEyeX - (eyeRadius - pupilRadius);
+            rightPupilX = rightEyeX - (eyeRadius - pupilRadius);
+        } else {
+            leftPupilX = leftEyeX + (eyeRadius - pupilRadius);
+            rightPupilX = rightEyeX + (eyeRadius - pupilRadius);
+        }
+    } else {
+        if (mouseY < leftEyeY) {                
+            leftPupilY = leftEyeY - (eyeRadius - pupilRadius);
+            rightPupilY = rightEyeY - (eyeRadius - pupilRadius);
+        } else {
+            leftPupilY = leftEyeY + (eyeRadius - pupilRadius);
+            rightPupilY = rightEyeY + (eyeRadius - pupilRadius);
+        }
+    }
 
     // 왼쪽 눈동자
-    circle(leftPupilX, leftEyeY, pupilRadius * 2);
+    circle(leftPupilX, leftPupilY, pupilRadius * 2);
     // 오른쪽 눈동자
-    circle(rightPupilX, faceY - 50, pupilRadius * 2);
+    circle(rightPupilX, rightPupilY, pupilRadius * 2);
 
     // 코
     push();
